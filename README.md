@@ -1,6 +1,15 @@
 # devlpr_npad
 ### _Node capstone for Thinkful bootcamp_
 
+Key technologies:
+* Node
+* Express
+* Testing (Chai, Mocha)
+* Authtentification (Passport)
+* Data presistence with NoSQL database (MongoDB)
+* ORM/ODM (Mongoose)
+* Templating (ejs)
+
 #### Mockups
 [Gist with mockups](https://gist.github.com/Tezza1/d8909d7c5976c5dbf07f357d8ac4130a)
 

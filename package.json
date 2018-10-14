@@ -1,0 +1,35 @@
+{
+  "name": "devlpr_npad",
+  "version": "1.0.0",
+  "description": "The Node capstone for the Thinkful Full Stack Bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tezza1/devlpr_npad.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "MongoDB",
+    "Mongoose",
+    "ejs",
+    "testing",
+    "chai",
+    "mocha",
+    "authentification",
+    "passport"
+  ],
+  "author": "Terry Shenker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tezza1/devlpr_npad/issues"
+  },
+  "homepage": "https://github.com/Tezza1/devlpr_npad#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
