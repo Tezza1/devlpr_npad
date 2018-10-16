@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
+// Load Mongoose Model
+require('../models/User');
+const User = mongoose.model('users');
 
 router.get('/login', (req, res) => {
     res.send('Users login');

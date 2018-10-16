@@ -1,5 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
+// Load Mongoose Model
+require('../models/User');
+const Note = mongoose.model('notes');
+
 
 router.get('/new', (req, res) => {
     res.send('New note');

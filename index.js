@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -7,6 +8,13 @@ const users = require('./routes/users');
 const projects = require('./routes/projects');
 const notes = require('./routes/notes');
 
+// Connect to database
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/devlpr-npad', {
+  useMongoClient: true
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 // Middleware
 app.use ((req, res, next) => {
