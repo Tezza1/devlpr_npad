@@ -1,14 +1,11 @@
 const express = require('express');
-const ejs = require('ejs');
-const path = require('path');
 
 const app = express();
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
-// Static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// Load routes
+const users = require('./routes/users');
+const projects = require('./routes/projects');
+const notes = require('./routes/notes');
 
 
 // Middleware
@@ -16,21 +13,23 @@ app.use ((req, res, next) => {
     next();
 });
 
-// Welcome screen route
+// About route
 app.get('/', (req, res) => {
-    const title = 'Welcome'
-    res.render('index', {
-        title: title
-    });
+    res.send('About');
 });
 
 // Dashboard route
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard');
+    res.send('Dashboard');
 });
 
+// Use routes
+app.use('/users', users);
+app.use('/projects', projects);
+app.use('/notes', notes);
 
-const port = 3000;
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
 })
