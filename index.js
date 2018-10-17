@@ -10,9 +10,8 @@ const notes = require('./routes/notes');
 
 // Connect to database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/devlpr-npad', {
-  useMongoClient: true
-})
+const dbURI = 'mongodb://localhost/devlpr-npad';
+mongoose.connect(dbURI,  {useNewUrlParser: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 

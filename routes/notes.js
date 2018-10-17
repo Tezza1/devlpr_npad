@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 // Load Mongoose Model
-require('../models/User');
+require('../models/Note');
 const Note = mongoose.model('notes');
 
 

@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Tezza1/devlpr_npad#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.3.4"
   }
 }

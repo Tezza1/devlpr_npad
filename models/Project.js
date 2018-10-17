@@ -19,13 +19,14 @@ let projectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    projectNotes: [noteSchema],
+    // projectNotes: [noteSchema],
     projectActiveStatus: {
         type: Boolean,
         default: true
     }
 });
 
+// TODO: create noteSchema
 // TODO: at timeline & milestones
 
 mongoose.model('projects', projectSchema);

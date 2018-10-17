@@ -16,7 +16,7 @@ let userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
     githubName: {
         type: String,
         unique: true
