@@ -8,12 +8,18 @@ const users = require('./routes/users');
 const projects = require('./routes/projects');
 const notes = require('./routes/notes');
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+/*
 // Connect to database
 mongoose.Promise = global.Promise;
 const dbURI = 'mongodb://localhost/devlpr-npad';
 mongoose.connect(dbURI,  {useNewUrlParser: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
+*/
+// TODO: under this when working from home
 
 // Middleware
 app.use ((req, res, next) => {
@@ -22,12 +28,15 @@ app.use ((req, res, next) => {
 
 // About route
 app.get('/', (req, res) => {
-    res.send('About');
+    const title = 'Welcome'
+    res.render('index', {
+        title: title
+    });
 });
 
 // Dashboard route
 app.get('/dashboard', (req, res) => {
-    res.send('Dashboard');
+    res.render('dashboard');
 });
 
 // Use routes

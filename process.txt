@@ -1,0 +1,18 @@
+Creating a new user:
+* Setup
+    - define a user model
+    - make model available to routes
+    - define routes
+    - input data into webpage (or use passport)
+* Input data into form and post
+* Create an instance of a new user
+* Take the data input into the form and load it into the new user instance
+* Save that instance to the db
+Phase 2:
+* Check if the user already exists
+Phase 3:
+* Add encrption for the password
+Phase 4 (front end):
+* Build out the form
+Phase 5 (front end):
+* Display a success message
