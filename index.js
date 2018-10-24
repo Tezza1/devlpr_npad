@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-/*
+
 // Connect to database
 mongoose.Promise = global.Promise;
 const dbURI = 'mongodb://localhost/devlpr-npad';
@@ -23,7 +23,7 @@ mongoose.connect(dbURI,  {useNewUrlParser: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 // TODO: undo this when working from home
-*/
+
 
 // Middleware
 app.use ((req, res, next) => {
