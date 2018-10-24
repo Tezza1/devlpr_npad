@@ -1,0 +1,37 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.company-header {
+    font-family: 'Mali', cursive;
+    font-size: 2.5em;
+    margin-left: 1em;
+    color: rgb(56, 98, 165)
+}
+
+.company-header i {
+    font-size: 1.1em;
+}
+/* landing page  */
+.landing-box {
+    border: 4px solid rgb(56, 98, 165);
+    border-radius: 2%;
+    padding: 3em 1em;
+    margin-top: 2em;
+    letter-spacing: 1.1;
+    text-align: center;
+}
+
+.landing-box a {
+    margin: 1em 0.5em; 
+    width: 45%;
+    padding: 1em 
+}
+
+.tagline {
+    color: grey;
+    font-style: italic;
+    line-height: 1.5em;
+}
