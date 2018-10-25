@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 require('../models/User');
 const User = mongoose.model('users');
 
-router.get('/login', (req, res) => {
+rounotter.get('/login', (req, res) => {
     res.send('Users login');
 });
 
@@ -39,9 +39,7 @@ router.post('/register', (req, res) => {
 router.get('/edit', (req, res) => {
     res.send('User edit');
 
-    // TODO: put into postman & delete
-    // -------------------------------------------
-    // Use this one
+    // TODO: put into edit & delete
     User.findOne({
         userName: 'John Doe'
     })
@@ -51,8 +49,6 @@ router.get('/edit', (req, res) => {
         user.save()
     });
 
-    // potential method
-    // User.findOneAndUpdate({userName: 'Joe Doe'}, { $set:{userName: 'Jane Doe'}});
 });
 
 router.post('/edit', (req, res) => {
