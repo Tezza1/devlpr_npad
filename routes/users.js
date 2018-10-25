@@ -6,8 +6,11 @@ const mongoose = require('mongoose');
 require('../models/User');
 const User = mongoose.model('users');
 
-rounotter.get('/login', (req, res) => {
-    res.send('Users login');
+router.get('/login', (req, res) => {
+    const pageName = ''
+    res.render('login', {
+        pageName: pageName
+    });
 });
 
 // middleware to login
@@ -28,7 +31,8 @@ router.get('/register', (req, res) => {
         githubPassword: 'githubpass2'
     });
 
-    newUser.save();
+    // TODO: uncomment at home
+    // newUser.save();
 
 });
 
@@ -40,6 +44,8 @@ router.get('/edit', (req, res) => {
     res.send('User edit');
 
     // TODO: put into edit & delete
+    // TODO: uncomment at home
+    /*
     User.findOne({
         userName: 'John Doe'
     })
@@ -48,6 +54,7 @@ router.get('/edit', (req, res) => {
         user.userName = "Jane Doe";
         user.save()
     });
+    */
 
 });
 
