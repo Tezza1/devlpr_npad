@@ -32,7 +32,7 @@ app.use ((req, res, next) => {
 
 // About route
 app.get('/', (req, res) => {
-    const title = 'Welcome to devlpr npad'
+    const title = 'devlpr npad'
     const tagline = 'The place for developers to keep their thoughts, ideas and notes on a kanban board linked to their code development'
     res.render('index', {
         title: title,
