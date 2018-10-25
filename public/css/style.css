@@ -163,3 +163,29 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     background: rgb(66, 184, 221);
 }
+
+/* Note page */
+.note-box {
+    max-width: 25%;
+    margin: 1.5em;
+    padding: 1.5em;
+    background-color: rgb(244, 206, 66);
+    border-radius: 2%;
+    color: white;
+    font-weight: bold;
+    line-height: 1.5em;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.note-box h3 {
+   color: rgb(56, 98, 165);
+   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+   font-size: 150%;
+}
+
+.note-button {
+    width: 98%;
+    font-size: 120%;
+    margin-top: 10px;
+}

@@ -9,20 +9,19 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
     <link href="https://fonts.googleapis.com/css?family=Mali:400,700" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Develpr npad - Dashboard</title>
+    <title>Develpr npad - Notes</title>
 </head>
 <body>
     <% include ./partials/header %>
     <% include ./partials/function_bar %>
     <div class="flex-container">
-        <% for (let i = 0; i < projectList.length; i++) { %>
-        <div class="project-box">
-            <h3><%= projectList[i].projectName %></h3>
-            <p>Start date: <%= projectList[i].startDate %></p>
-            <p>End date: <%= projectList[i].endDate %></p>
-            <p># of notes: <%= projectList[i].numNotes %></p>
-            <a class="button-secondary pure-button" href="/notes/all">Notes</a>
-            <a class="pure-button pure-button-primary" href="#">Edit</a>
+        <% for (let i = 0; i < noteList.length; i++) { %>
+        <div class="note-box">
+            <h3><%= noteList[i].name %></h3>
+            <p><%= noteList[i].text %></p>
+            <p>Created on: <%= noteList[i].createdOn %></p>
+            <p>Status: <%= noteList[i].status %></p>
+            <a class="pure-button pure-button-primary note-button" href="#">Edit</a>
         </div>
         <% } %>
     </div>
