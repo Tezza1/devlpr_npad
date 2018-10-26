@@ -2,35 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let userSchema = new mongoose.Schema({
-    userName: {
+    name: {
         type: String,
         required: true,
         unique: true
     },
-    userEmail: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    userPassword: {
+    password: {
         type: String,
         required: true,
         unique: true
     },
-    githubName: {
-        type: String,
-        unique: true
-    },
-    githubPassword: {
-        type: String,
-        unique: true
-    },
-    missionGoal: String,  // need max length?
-    createdOn: {
-        type: Date,
-        'default': Date.now
-    },
-    userModifiedOn: {
+    date: {
         type: Date,
         'default': Date.now
     },

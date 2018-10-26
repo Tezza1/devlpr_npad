@@ -100,9 +100,9 @@
 }
 
 .landing-box a {
-    margin: 1em 0.5em; 
+    margin: 1em 0.5em;
     width: 45%;
-    padding: 1em 
+    padding: 1em;
 }
 
 /* Login page */
@@ -123,10 +123,10 @@
     margin-bottom: 10px;
 }
 
-.box-form a {
-    margin: 1em 0.5em; 
+.box-form a, button {
+    margin: 1em 0.5em;
     width: 45%;
-    padding: 1em 
+    padding: 1em;
 }
 
 /* Dashboard */
@@ -188,4 +188,12 @@
     width: 98%;
     font-size: 120%;
     margin-top: 10px;
+}
+
+.highlight-block {
+    background: #1f8dd6;
+    margin: -0.5em 0 1em 0;
+    padding: 0.3em 1em;
+    border-radius: 3px;
+    color: #fff;
 }

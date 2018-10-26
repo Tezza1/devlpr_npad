@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -9,11 +10,16 @@ const users = require('./routes/users');
 const projects = require('./routes/projects');
 const notes = require('./routes/notes');
 
-// Static folder
-app.use(express.static(path.join(__dirname, 'public')))
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 /*
 // Connect to database
@@ -29,6 +35,7 @@ mongoose.connect(dbURI,  {useNewUrlParser: true})
 app.use ((req, res, next) => {
     next();
 });
+
 
 // About route
 app.get('/', (req, res) => {
