@@ -56,31 +56,52 @@ router.post('/register', (req, res) => {
             name: req.body.name,
             email: req.body.email
         })
-    } else {
-        const newUser = new User ({
-            name: req.body.name,
-            email: req.body.email,
-            passowrd: req.body.password
-        });
+    }
+    else {
+        User.findOne({email: req.body.email})
+            .then(user => {
+                if(user){
+                    // TODO: create screen for this
+                    console.log('User with same email already exists');
+                    res.redirect('/users/register');
+                }
+                else {
+                    const newUser = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password
+                    });
+                    newUser.save()
+                        .then(user => {
+                            // send a success message to the page
+                            res.redirect('/users/login');
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            return;
+                        })
+                }
+            })
+    }
 
+        // TODO: delete if don't need to encrypt password
         // encrypt the password using bcrypt
         // # of characters (10)
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.passowrd, salt, (err, hash ) => {
-                if(err) throw err;
-                newUser.passowrd = hash;
-                newUser.save()
-                    .then(user => {
-                        // send a success message to the page
-                        res.redirect('/users/login');
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        return;
-                    })
-            });
-        });
-    }
+        // bcrypt.genSalt(10, (err, salt) => {
+        //     bcrypt.hash(newUser.password, salt, (err, hash) => {
+        //         // if(err) throw err;
+        //         newUser.password = hash;
+        //         newUser.save()
+        //             .then(user => {
+        //                 // send a success message to the page
+        //                 res.redirect('/users/login');
+        //             })
+        //             .catch(err => {
+        //                 console.log(err);
+        //                 return;
+        //             })
+        //     });
+        // });
 });
 
 router.get('/edit', (req, res) => {
