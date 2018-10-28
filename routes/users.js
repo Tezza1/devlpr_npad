@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+// const passport = require('passport');
+const bcrypt = require('bcryptjs');
 
 // Load Mongoose Model
 require('../models/User');
@@ -29,19 +30,6 @@ router.get('/register', (req, res) => {
         name: null,
         email: null
     })
-    // TODO: put into postman & delete
-    // Insert test data
-    // const newUser = new User({
-    //     userName: 'John Doe',
-    //     userEmail: 'def@abc.com',
-    //     userPassword: 'def456',
-    //     githubName: 'doey11',
-    //     githubPassword: 'githubpass2'
-    // });
-
-    // TODO: uncomment at home
-    // newUser.save();
-
 });
 
 router.post('/register', (req, res) => {
@@ -69,7 +57,29 @@ router.post('/register', (req, res) => {
             email: req.body.email
         })
     } else {
-        res.send('passed')
+        const newUser = new User ({
+            name: req.body.name,
+            email: req.body.email,
+            passowrd: req.body.password
+        });
+
+        // encrypt the password using bcrypt
+        // # of characters (10)
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.passowrd, salt, (err, hash ) => {
+                if(err) throw err;
+                newUser.passowrd = hash;
+                newUser.save()
+                    .then(user => {
+                        // send a success message to the page
+                        res.redirect('/users/login');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        return;
+                    })
+            });
+        });
     }
 });
 
