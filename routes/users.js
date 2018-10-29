@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-// const passport = require('passport');
+const passport = require('passport');
 // const bcrypt = require('bcryptjs');
 // TODO: remove if not required 
 
@@ -14,14 +14,18 @@ router.get('/login', (req, res) => {
     res.render('users/login', {
         pageName: pageName,
         display: 'none',
-        success: null
+        success: null,
     });
 });
 
-// middleware to login
+// using passport local strategy to authenticate login
 router.post('/login', (req, res, next) => {
-
-    next();
+    passport.authenticate('local', {
+        successRedirect: '/projects/dashboard',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
+    
 });
 
 router.get('/register', (req, res) => {
@@ -67,7 +71,7 @@ router.post('/register', (req, res) => {
             .then(user => {
                 if(user) {
                     res.redirect('/users/register', {
-                        pageName: pageName,
+                        pageName: '',
                         display: 'inherit',
                         errors: 'User with same email already exists'
                     });
@@ -81,11 +85,11 @@ router.post('/register', (req, res) => {
                     newUser.save()
                         .then(user => {
                             // send a success message to the page
-                            res.redirect('/users/login', {
+                            res.redirect('/users/login'/*, {
                                 pageName: '',
                                 display: 'inherit',
                                 success: 'User successfully registered'
-                            });
+                            }*/);
                         })
                         .catch(err => {
                             console.log(err);
@@ -94,25 +98,6 @@ router.post('/register', (req, res) => {
                 }
             })
     }
-
-        // TODO: delete if don't need to encrypt password
-        // encrypt the password using bcrypt
-        // # of characters (10)
-        // bcrypt.genSalt(10, (err, salt) => {
-        //     bcrypt.hash(newUser.password, salt, (err, hash) => {
-        //         // if(err) throw err;
-        //         newUser.password = hash;
-        //         newUser.save()
-        //             .then(user => {
-        //                 // send a success message to the page
-        //                 res.redirect('/users/login');
-        //             })
-        //             .catch(err => {
-        //                 console.log(err);
-        //                 return;
-        //             })
-        //     });
-        // });
 });
 
 router.get('/edit', (req, res) => {
