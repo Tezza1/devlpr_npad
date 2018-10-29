@@ -40,7 +40,7 @@
 /* Additional buttons */
 .button-error {
     color: white;
-    background: rgb(202, 60, 60); /* this is a maroon */
+    background: rgb(202, 60, 60); 
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -129,6 +129,22 @@
     padding: 1em;
 }
 
+.highlight-block {
+    background: rgb(202, 60, 60);
+    margin: -0.5em 0 1em 0;
+    padding: 0.3em 1em;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.highlight-success-block {
+    background: rgb(69, 178, 66);
+    margin: -0.5em 0 1em 0;
+    padding: 0.3em 1em;
+    border-radius: 3px;
+    color: #fff;
+}
+
 /* Dashboard */
 .flex-container {
     display: flex;
@@ -190,10 +206,3 @@
     margin-top: 10px;
 }
 
-.highlight-block {
-    background: #1f8dd6;
-    margin: -0.5em 0 1em 0;
-    padding: 0.3em 1em;
-    border-radius: 3px;
-    color: #fff;
-}

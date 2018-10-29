@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 // const passport = require('passport');
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
+// TODO: remove if not required 
 
 // Load Mongoose Model
 require('../models/User');
@@ -11,7 +12,9 @@ const User = mongoose.model('users');
 router.get('/login', (req, res) => {
     const pageName = ''
     res.render('users/login', {
-        pageName: pageName
+        pageName: pageName,
+        display: 'none',
+        success: null
     });
 });
 
@@ -28,7 +31,8 @@ router.get('/register', (req, res) => {
         pageName: pageName,
         errors: null,
         name: null,
-        email: null
+        email: null,
+        display: 'none'
     })
 });
 
@@ -52,6 +56,7 @@ router.post('/register', (req, res) => {
         const pageName = "";
         res.render('users/register', {
             pageName: pageName,
+            display: 'inherit',
             errors: errors,
             name: req.body.name,
             email: req.body.email
@@ -60,10 +65,12 @@ router.post('/register', (req, res) => {
     else {
         User.findOne({email: req.body.email})
             .then(user => {
-                if(user){
-                    // TODO: create screen for this
-                    console.log('User with same email already exists');
-                    res.redirect('/users/register');
+                if(user) {
+                    res.redirect('/users/register', {
+                        pageName: pageName,
+                        display: 'inherit',
+                        errors: 'User with same email already exists'
+                    });
                 }
                 else {
                     const newUser = new User({
@@ -74,7 +81,11 @@ router.post('/register', (req, res) => {
                     newUser.save()
                         .then(user => {
                             // send a success message to the page
-                            res.redirect('/users/login');
+                            res.redirect('/users/login', {
+                                pageName: '',
+                                display: 'inherit',
+                                success: 'User successfully registered'
+                            });
                         })
                         .catch(err => {
                             console.log(err);

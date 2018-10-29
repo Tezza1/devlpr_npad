@@ -20,7 +20,7 @@
             <form class="pure-form pure-form-aligned" action="/users/register" method="post">
                 <fieldset>
                     <legend>Register</legend>
-                    <div class="highlight-block">
+                    <div class="highlight-block" style="display: <%= display %>;">
                     <% if (errors) { %>
                         <% for(let i=0; i < errors.length; i++) { %>
                             <p><%= errors[i].text %></p>

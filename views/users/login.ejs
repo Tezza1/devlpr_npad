@@ -20,7 +20,10 @@
             <form class="pure-form pure-form-aligned">
                 <fieldset>
                     <legend>Login</legend>
-
+                    <div class="highlight-success-block" style="display: <%= display %>;">
+                        <p><%= success %></p>
+                    </div>
+                    
                     <div class="pure-control-group">
                         <label for="email">Email</label>
                         <input id="email" type="email" placeholder="Email" name="email" required>
