@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 // const bcrypt = require('bcryptjs');
-// TODO: remove if not required 
+// TODO: remove if not required
 
 // Load Mongoose Model
 require('../models/User');
@@ -25,7 +25,7 @@ router.post('/login', (req, res, next) => {
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
-    
+
 });
 
 router.get('/register', (req, res) => {

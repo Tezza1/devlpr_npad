@@ -8,36 +8,22 @@ const User = mongoose.model('users');
 module.exports = function(passport){
     passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
         User.findOne({
-            email: email
-        })
-            .then( (user, password) => {
+                email: email,
+            },)
+            .then( (user) => {
+                console.log(user);
+                console.log(user.password);
                 if(!user){
                     // null --> for errors and false --> for user
                     return done(null, false);
                 }
-                if (!password) {
+                else if (!password) {
                     return done(null, false);
+                }
+                else {
+                    return done(null, user)
                 }
             })
     }));
 };
 
-/*
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-*/
