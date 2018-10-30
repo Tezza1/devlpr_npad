@@ -126,11 +126,13 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res) => {
-
+    res.send('Users edit');
 });
 
 router.get('/logout', (req, res) => {
-    res.send('Users logout');
+    req.logout();
+    // req.flash('success_msg', 'Logged out')
+    res.redirect('/users/login');
 });
 
 module.exports = router;

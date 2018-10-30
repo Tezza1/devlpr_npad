@@ -58,7 +58,7 @@ app.use(passport.session());
 
 // About route
 app.get('/', (req, res) => {
-    const title = 'devlpr npad';
+    const title = 'devlpr_npad';
     const tagline = 'The place for developers to keep their thoughts, ideas and notes on a kanban board linked to their code development';
     const pageName = 'Welcome';
     res.render('index', {
