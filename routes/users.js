@@ -14,7 +14,7 @@ const protectRoute = (req, res, next) => {
         if(req.isAuthenticated()){
             return next;
         }
-        
+
         // TODO: implement flash
         // req.flash('error_msg', 'Not authorized');
         res.redirect('/users/login');

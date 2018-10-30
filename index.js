@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
- 
+
 // Connect to database
 mongoose.Promise = global.Promise;
 const dbURI = 'mongodb://localhost/devlpr-npad';
