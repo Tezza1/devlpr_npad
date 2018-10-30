@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const session = require('express-session');
 
 const app = express();
 
@@ -38,6 +39,21 @@ mongoose.connect(dbURI,  {useNewUrlParser: true})
 app.use ((req, res, next) => {
     next();
 });
+
+// Express session middleware
+/*
+app.use(session({
+    secrect: 'secrect',
+    resave: true,
+    saveUninitialized: true
+}))
+*/
+
+// http://www.passportjs.org/docs/configure/
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.use(flash());
 
 
 // About route

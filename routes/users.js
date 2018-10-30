@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+// const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
-// const bcrypt = require('bcryptjs');
-// TODO: remove if not required
+const bcrypt = require('bcryptjs');
 
 // Load Mongoose Model
 require('../models/User');
@@ -56,6 +56,7 @@ router.post('/register', (req, res) => {
         });
     }
 
+    // if the array has anything in it then re-render the form
     if (errors.length) {
         const pageName = "";
         res.render('users/register', {
@@ -67,37 +68,43 @@ router.post('/register', (req, res) => {
         })
     }
     else {
+        // check if the email address has already been used
         User.findOne({email: req.body.email})
             .then(user => {
-                if(user) {
-                    res.redirect('/users/register', {
-                        pageName: '',
-                        display: 'inherit',
-                        errors: 'User with same email already exists'
-                    });
+                if(user){
+                    // TDO: add flash messaging
+                    // req_flash('error_msg', 'Unique email required')
+                    res.redirect('/users/register');
                 }
                 else {
-                    const newUser = new User({
-                        name: req.body.name,
-                        email: req.body.email,
-                        password: req.body.password
-                    });
-                    newUser.save()
-                        .then(user => {
-                            // send a success message to the page
-                            res.redirect('/users/login'/*, {
-                                pageName: '',
-                                display: 'inherit',
-                                success: 'User successfully registered'
-                            }*/);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            return;
-                        })
+                        const newUser = new User ({
+                            name: req.body.name,
+                            email: req.body.email,
+                            password: req.body.password
+                        });
+                        // https://www.npmjs.com/package/bcryptjs
+                        // encrypt the password and use 10 characters
+                        bcrypt.genSalt(10, (err, salt) => {
+                            // (err, hash) --> hash is the hashed password
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                if (err) throw err;
+                                newUser.password = hash;
+                                newUser.save()
+                                    .then(user => {
+                                        // TODO: load in flash message
+                                        // req.flash('success_msg', 'Successful registration');
+                                        res.redirect('/users/login');
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                        return;
+                                    });
+                            });
+                        });    
                 }
-            })
+            });
     }
+        
 });
 
 router.get('/edit', (req, res) => {
