@@ -9,6 +9,17 @@ const bcrypt = require('bcryptjs');
 require('../models/User');
 const User = mongoose.model('users');
 
+// protect routes
+const protectRoute = (req, res, next) => {
+        if(req.isAuthenticated()){
+            return next;
+        }
+        
+        // TODO: implement flash
+        // req.flash('error_msg', 'Not authorized');
+        res.redirect('/users/login');
+};
+
 router.get('/login', (req, res) => {
     const pageName = ''
     res.render('users/login', {
@@ -126,7 +137,7 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res) => {
-    res.send('Users edit');
+    res.send('Users edit')
 });
 
 router.get('/logout', (req, res) => {

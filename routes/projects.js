@@ -6,6 +6,17 @@ const mongoose = require('mongoose');
 require('../models/Project');
 const Project = mongoose.model('projects');
 
+// protect routes
+const protectRoute = (req, res, next) => {
+        if(req.isAuthenticated()){
+            return next;
+        }
+        
+        // TODO: implement flash
+        // req.flash('error_msg', 'Not authorized');
+        res.redirect('/users/login');
+};
+
 // Dashboard route
 router.get('/dashboard', (req, res) => {
     const pageName = "Dashboard";
