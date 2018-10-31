@@ -25,14 +25,23 @@ app.use(bodyParser.json());
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
-
-// Connect to database
+// Connect to database --> because running old 32 bit version 
 mongoose.Promise = global.Promise;
 const dbURI = 'mongodb://localhost/devlpr-npad';
 mongoose.connect(dbURI,  {useNewUrlParser: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
-// TODO: undo this when working from home
+
+/*
+// if using latest veersion of Mongodb
+mongoose.Promise = global.Promise;
+const dbURI = 'mongodb://localhost/devlpr-npad';
+mongoose.connect(dbURI,  {useMongoClient: true})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
+
+*/
+
 
 
 // Middleware
@@ -40,14 +49,16 @@ app.use ((req, res, next) => {
     next();
 });
 
-// Express session middleware
 /*
+// TODO: set up sessions
+// Express session middleware
 app.use(session({
     secrect: 'secrect',
     resave: true,
     saveUninitialized: true
 }))
 */
+
 
 // http://www.passportjs.org/docs/configure/
 app.use(passport.initialize());

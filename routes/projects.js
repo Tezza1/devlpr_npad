@@ -20,6 +20,7 @@ const protectRoute = (req, res, next) => {
 router.get('/dashboard', (req, res) => {
     const pageName = "Dashboard";
     // TODO: delete dummy and get from database
+    // TODO: create add project button next to login
     let projectList = [
         {
             projectName: 'Project1',
