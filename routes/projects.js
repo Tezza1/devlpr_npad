@@ -27,7 +27,7 @@ router.get('/dashboard', (req, res) => {
                 functionBarRoute: '/projects/add',
                 functionBarLabel: 'Project',
                 projectList: project
-    });  
+    });
         })
 });
 
@@ -42,27 +42,27 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
     let errors = [];
-    
+
     if(!req.body.title){
         errors.push({text: 'Title required'});
     }
-    
+
     if (req.body.title.length < 2) {
         errors.push({
             text: "Minimum 2 characters required for Title"
         });
     }
-    
+
     if(!req.body.details) {
         errors.push({text: 'Details required'});
     }
-    
+
     if (req.body.details.length < 10) {
         errors.push({
             text: "Minimum 10 characters required for Details"
         });
     }
-    
+
     if(errors.length){
         const pageName = "";
         res.render('projects/add', {
@@ -88,7 +88,7 @@ router.post('/add', (req, res) => {
 router.get('/edit/:id', (req, res) => {
     const pageName = 'Edit project';
     Project.findOne({
-        _id: req.params.id 
+        _id: req.params.id
     })
         .then(project => {
             res.render('projects/edit', {
@@ -99,17 +99,17 @@ router.get('/edit/:id', (req, res) => {
         });
 });
 
-router.put('projects/edit/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
     Project.findOne({ _id: req.params.id })
         .then(project => {
            project.title = req.body.title;
            project.details = req.body.details;
-           
+
            project.save()
             .then(project => {
                 res.redirect('/projects/dashboard')
             })
-           
+
         })
 });
 

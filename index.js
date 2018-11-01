@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const methodOverride = require('method-override');
 const session = require('express-session');
 
 const app = express();
@@ -19,19 +19,19 @@ require('./config/passport')(passport);
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Body parser middleware --> to catch data from a form submission
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// Static folder
-app.use(express.static(path.join(__dirname, 'public')));
 
 // https://github.com/expressjs/method-override
 // override using a query value
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
-// Connect to database --> because running old 32 bit version 
+// Connect to database --> because running old 32 bit version
 mongoose.Promise = global.Promise;
 const dbURI = 'mongodb://localhost/devlpr-npad';
 mongoose.connect(dbURI,  {useNewUrlParser: true})
@@ -48,12 +48,6 @@ mongoose.connect(dbURI,  {useMongoClient: true})
 
 */
 
-
-
-// Middleware
-app.use ((req, res, next) => {
-    next();
-});
 
 /*
 // TODO: set up sessions
