@@ -17,12 +17,11 @@
     <div class="flex-container">
         <% for (let i = 0; i < projectList.length; i++) { %>
         <div class="project-box">
-            <h3><%= projectList[i].projectName %></h3>
-            <p>Start date: <%= projectList[i].startDate %></p>
-            <p>End date: <%= projectList[i].endDate %></p>
-            <p># of notes: <%= projectList[i].numNotes %></p>
+            <h3><%= projectList[i].title %></h3>
+            <p>Details: <%= projectList[i].details %></p>
+            <p>Date modified: <%= projectList[i].date.toDateString() %></p>
             <a class="button-secondary pure-button" href="/notes/all">Notes</a>
-            <a class="pure-button pure-button-primary" href="#">Edit</a>
+            <a class="pure-button pure-button-primary" href="/projects/edit/<%= projectList[i].id %>">Edit</a>
         </div>
         <% } %>
     </div>
