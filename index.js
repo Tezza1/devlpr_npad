@@ -18,7 +18,7 @@ require('./config/passport')(passport);
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// Body parser middleware
+// Body parser middleware --> to catch data from a form submission
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

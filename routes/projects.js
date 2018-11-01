@@ -83,18 +83,58 @@ router.get('/dashboard', (req, res) => {
             numNotes: 4
         }
     ];
-    res.render('dashboard', {
+    res.render('projects/dashboard', {
         pageName: pageName,
+        functionBarRoute: '/projects/add',
+        functionBarLabel: 'Project',
         projectList: projectList
     });
 });
 
-router.get('/new', (req, res) => {
-    res.send('New project');
+router.get('/add', (req, res) => {
+    res.render('projects/add', {
+        pageName: 'Add a project',
+        errors: null,
+        title: null,
+        details: null
+    });
 });
 
-router.post('/new', (req,res) => {
-
+router.post('/add', (req, res) => {
+    let errors = [];
+    
+    if(!req.body.title){
+        errors.push({text: 'Title required'});
+    }
+    
+    if (req.body.title.length < 2) {
+        errors.push({
+            text: "Minimum 2 characters required for Title"
+        });
+    }
+    
+    if(!req.body.details) {
+        errors.push({text: 'Details required'});
+    }
+    
+    if (req.body.details.length < 10) {
+        errors.push({
+            text: "Minimum 10 characters required for Details"
+        });
+    }
+    
+    if(errors.length){
+        const pageName = "";
+        res.render('projects/add', {
+            pageName: 'Add a project',
+            errors: errors,
+            title: req.body.title,
+            details: req.body.details
+        })
+    }
+    else {
+        res.send("Added a project")
+    }
 });
 
 module.exports = router;
