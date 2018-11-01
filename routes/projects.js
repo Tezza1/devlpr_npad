@@ -85,7 +85,7 @@ router.post('/add', (req, res) => {
     }
 });
 
-router.get('/edit:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     const pageName = 'Edit project';
     Project.findOne({
         _id: req.params.id 
@@ -95,8 +95,22 @@ router.get('/edit:id', (req, res) => {
                 pageName: pageName,
                 errors: null,
                 project: project
-            }); 
+            });
         });
+});
+
+router.put('projects/edit/:id', (req, res) => {
+    Project.findOne({ _id: req.params.id })
+        .then(project => {
+           project.title = req.body.title;
+           project.details = req.body.details;
+           
+           project.save()
+            .then(project => {
+                res.redirect('/projects/dashboard')
+            })
+           
+        })
 });
 
 module.exports = router;

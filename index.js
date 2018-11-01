@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const methodOverride = require('method-override');
 const session = require('express-session');
 
 const app = express();
@@ -23,7 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Static folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
+
+// https://github.com/expressjs/method-override
+// override using a query value
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 
 // Connect to database --> because running old 32 bit version 
 mongoose.Promise = global.Promise;
