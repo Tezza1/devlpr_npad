@@ -4,21 +4,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const {protectRoute} = require('../helpers/auth');
 
 // Load Mongoose Model
 require('../models/User');
 const User = mongoose.model('users');
-
-// protect routes
-const protectRoute = (req, res, next) => {
-        if(req.isAuthenticated()){
-            return next;
-        }
-
-        // TODO: implement flash
-        // req.flash('error_msg', 'Not authorized');
-        res.redirect('/users/login');
-};
 
 router.get('/login', (req, res) => {
     const pageName = ''
@@ -118,7 +108,7 @@ router.post('/register', (req, res) => {
         
 });
 
-router.get('/edit', (req, res) => {
+router.get('/edit', protectRoute, (req, res) => {
     res.send('User edit');
 
     // TODO: put into edit & delete
@@ -136,7 +126,7 @@ router.get('/edit', (req, res) => {
 
 });
 
-router.post('/edit', (req, res) => {
+router.post('/edit', protectRoute, (req, res) => {
     res.send('Users edit')
 });
 

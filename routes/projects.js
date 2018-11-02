@@ -1,25 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const {protectRoute} = require('../helpers/auth');
 
 // Load Mongoose Model
 require('../models/Project');
 const Project = mongoose.model('projects');
 
-// protect routes
-const protectRoute = (req, res, next) => {
-        if(req.isAuthenticated()){
-            return next;
-        }
-        // TODO: implement flash
-        // req.flash('error_msg', 'Not authorized');
-        res.redirect('/users/login');
-};
-
 // Dashboard route
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', protectRoute, (req, res) => {
     const pageName = "Dashboard";
-    Project.find({})
+    Project.find({user: req.user.id})
         .sort({ date: 'desc' })
         .then(project => {
             res.render('projects/dashboard', {
@@ -31,7 +22,7 @@ router.get('/dashboard', (req, res) => {
         })
 });
 
-router.get('/add', (req, res) => {
+router.get('/add', protectRoute, (req, res) => {
     res.render('projects/add', {
         pageName: 'Add a project',
         errors: null,
@@ -40,7 +31,7 @@ router.get('/add', (req, res) => {
     });
 });
 
-router.post('/add', (req, res) => {
+router.post('/add', protectRoute, (req, res) => {
     let errors = [];
 
     if(!req.body.title){
@@ -75,7 +66,8 @@ router.post('/add', (req, res) => {
     else {
         const newProject = {
             title: req.body.title,
-            details: req.body.details
+            details: req.body.details,
+            user: req.user.id
         };
         new Project(newProject)
             .save()
@@ -86,7 +78,7 @@ router.post('/add', (req, res) => {
     }
 });
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', protectRoute, (req, res) => {
     const pageName = 'Edit project';
     Project.findOne({
         _id: req.params.id
@@ -100,7 +92,7 @@ router.get('/edit/:id', (req, res) => {
         });
 });
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', protectRoute, (req, res) => {
     Project.findOne({ _id: req.params.id })
         .then(project => {
            project.title = req.body.title;
@@ -115,7 +107,7 @@ router.put('/edit/:id', (req, res) => {
         });
 });
 
-router.delete('/edit/:id', (req, res) => {
+router.delete('/edit/:id', protectRoute, (req, res) => {
     Project.deleteOne({ _id: req.params.id })
         .then(() => {
             req.flash('success_msg', 'Project deleted');
