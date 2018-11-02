@@ -14,6 +14,7 @@
 <body>
     <% include ../partials/header %>
     <% include ../partials/function_bar %>
+    <% include ../partials/messages %>
     <div class="flex-container">
         <% for (let i = 0; i < projectList.length; i++) { %>
         <div class="project-box">
@@ -22,6 +23,10 @@
             <p>Date modified: <%= projectList[i].date.toDateString() %></p>
             <a class="button-secondary pure-button" href="/notes/all">Notes</a>
             <a class="pure-button pure-button-primary" href="/projects/edit/<%= projectList[i].id %>">Edit</a>
+            <form action="/projects/edit/<%= projectList[i]._id %>?_method=DELETE" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="pure-button button-error dashboard-button">Delete</button>
+            </form>
         </div>
         <% } %>
     </div>

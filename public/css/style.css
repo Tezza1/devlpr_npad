@@ -37,6 +37,49 @@
     float: right;
 }
 
+/* Flash messages */
+.flash-success-msg {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(28, 184, 65); /* this is a green */
+    text-align: center;
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 3s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 3s;
+}
+
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.flash-error-msg {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.flash-errors-msg {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(223, 117, 20); /* this is an orange */
+}
+
 /* Additional buttons */
 .button-error {
     color: white;
@@ -45,8 +88,12 @@
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.form-login-button{
+.form-login-button {
     padding: 1em;
+}
+
+.dashboard-button {
+    width: 100%;
 }
 
 /* Footer*/

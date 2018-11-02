@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -45,26 +46,29 @@ const dbURI = 'mongodb://localhost/devlpr-npad';
 mongoose.connect(dbURI,  {useMongoClient: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
-
 */
 
-
-/*
-// TODO: set up sessions
-// Express session middleware
+// Express session midleware
 app.use(session({
-    secrect: 'secrect',
-    resave: true,
-    saveUninitialized: true
-}))
-*/
-
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // http://www.passportjs.org/docs/configure/
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(flash());
+app.use(flash());
+
+// Set global variables
+app.use(function(req, res, next){
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    next();
+});
 
 
 // About route

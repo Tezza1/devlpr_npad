@@ -70,18 +70,19 @@ router.post('/add', (req, res) => {
             errors: errors,
             title: req.body.title,
             details: req.body.details
-        })
+        });
     }
     else {
         const newProject = {
             title: req.body.title,
             details: req.body.details
-        }
+        };
         new Project(newProject)
             .save()
             .then(idea => {
-                res.redirect('/projects/dashboard')
-            })
+                req.flash('success_msg', 'Project added');
+                res.redirect('/projects/dashboard');
+            });
     }
 });
 
@@ -107,10 +108,19 @@ router.put('/edit/:id', (req, res) => {
 
            project.save()
             .then(project => {
-                res.redirect('/projects/dashboard')
-            })
+                req.flash('success_msg', 'Project updated');
+                res.redirect('/projects/dashboard');
+            });
 
-        })
+        });
+});
+
+router.delete('/edit/:id', (req, res) => {
+    Project.deleteOne({ _id: req.params.id })
+        .then(() => {
+            req.flash('success_msg', 'Project deleted');
+            res.redirect('/projects/dashboard'); 
+        });
 });
 
 module.exports = router;
