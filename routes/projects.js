@@ -19,7 +19,7 @@ router.get('/dashboard', protectRoute, (req, res) => {
                 functionBarLabel: 'Project',
                 projectList: project
     });
-        })
+        });
 });
 
 router.get('/add', protectRoute, (req, res) => {

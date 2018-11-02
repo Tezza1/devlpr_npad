@@ -2,27 +2,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let noteSchema = new mongoose.Schema({
-    noteName: {
+    title: {
         type: String,
         required: true
     },
-    noteDescription: {
+    details: {
         type: String,
         required: true,
-        default: ' '
     },
-    noteCreatedOn: {
-        type: Date,
-        'default': Date.now
+    project: {
+        type: String,
+        required: true
     },
-    notePipeline: {
+    /*
+    pipeline: {
         type: String,
         enum: ['Not Started', 'WIP', 'Under Review', 'Completed'],
         required: true
     },
-    noteActiveStatus: {
-        type: Boolean,
-        default: true
+    */
+    date: {
+        type: Date,
+        'default': Date.now
     }
 });
 

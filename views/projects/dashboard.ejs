@@ -21,7 +21,7 @@
             <h3><%= projectList[i].title %></h3>
             <p>Details: <%= projectList[i].details %></p>
             <p>Date modified: <%= projectList[i].date.toDateString() %></p>
-            <a class="button-secondary pure-button" href="/notes/all">Notes</a>
+            <a class="button-secondary pure-button" href="/notes/all/<%= projectList[i]._id %>">Notes</a>
             <a class="pure-button pure-button-primary" href="/projects/edit/<%= projectList[i].id %>">Edit</a>
             <form action="/projects/edit/<%= projectList[i]._id %>?_method=DELETE" method="post">
                 <input type="hidden" name="_method" value="DELETE">

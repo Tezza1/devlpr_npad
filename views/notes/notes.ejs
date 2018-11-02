@@ -12,19 +12,18 @@
     <title>Develpr_npad - Notes</title>
 </head>
 <body>
-    <% include ./partials/header %>
-    <% include ./partials/function_bar %>
+    <% include ../partials/header %>
+    <% include ../partials/function_bar %>
     <div class="flex-container">
         <% for (let i = 0; i < noteList.length; i++) { %>
         <div class="note-box">
-            <h3><%= noteList[i].name %></h3>
-            <p><%= noteList[i].text %></p>
-            <p>Created on: <%= noteList[i].createdOn %></p>
-            <p>Status: <%= noteList[i].status %></p>
+            <h3><%= noteList[i].title %></h3>
+            <p><%= noteList[i].details %></p>
+            <p>Created on: <%= noteList[i].date.toDateString() %></p>
             <a class="pure-button pure-button-primary note-button" href="#">Edit</a>
         </div>
         <% } %>
     </div>
-    <% include ./partials/footer %>
+    <% include ../partials/footer %>
 </body>
 </html>
