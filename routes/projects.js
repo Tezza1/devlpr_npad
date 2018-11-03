@@ -9,7 +9,7 @@ const Project = mongoose.model('projects');
 
 // Dashboard route
 router.get('/dashboard', protectRoute, (req, res) => {
-    const pageName = "Dashboard";
+    const pageName = " - Dashboard";
     Project.find({user: req.user.id})
         .sort({ date: 'desc' })
         .then(project => {

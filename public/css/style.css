@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+/* ----- BACKGROUND IMAGE ----- */
+.background-image {
+    background-image: url("/img/web_developer.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 /* ----- PAGE COMPONENTS ----- */
 .company-header {
     font-family: 'Mali', cursive;
@@ -130,13 +140,21 @@
 /* ----- PAGES ----- */
 
 /* Landing page  */
+.landing-page {
+    margin-top: 2.5em;
+}
+
 .landing-box {
+    background-color: white;
     border: 4px solid rgb(56, 98, 165);
     border-radius: 2%;
-    padding: 3em 1em;
-    margin-top: 2em;
+    padding: 1em;
     letter-spacing: 1.1;
     text-align: center;
+}
+
+.landing-box h1 {
+    color: rgb(66, 184, 221);
 }
 
 .company-name {
@@ -160,8 +178,8 @@
 .box-form {
     border: 4px solid rgb(56, 98, 165);
     border-radius: 2%;
-    padding: 3em 1em;
-    margin-top: 2em;
+    padding: 1.5em;
+    margin-top: 1em;
 }
 
 .box-form legend {
@@ -172,13 +190,15 @@
 
 .box-form form input {
     margin-bottom: 10px;
+    width: 100%
 }
 
-.box-form a, button {
-    margin: 1em 0.5em;
-    width: 45%;
+.box-form a,button {
+    width: 100%;
     padding: 1em;
+    margin-top: 1em;
 }
+
 
 .highlight-block {
     background: rgb(202, 60, 60);
@@ -218,9 +238,9 @@
 }
 
 .project-box a {
-    width: 40%;
+    width: 100%;
     padding: 8px;
-    margin: 5px;
+    margin-top: 1em;
     font-size: 110%;
 }
 
@@ -252,8 +272,21 @@
 }
 
 .note-button {
-    width: 98%;
+    width: 100%;
     font-size: 120%;
-    margin-top: 10px;
+    margin-top: 0.5em;
+    padding: 0.5em;
 }
 
+.back-link {
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
+    position: fixed;
+    right: 30px;
+    bottom: 90px;
+}
+
+.fa-arrow-right {
+    margin-top: 1em;
+}

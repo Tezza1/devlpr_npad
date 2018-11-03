@@ -101,11 +101,11 @@ router.post('/register', (req, res) => {
                                         return;
                                     });
                             });
-                        });    
+                        });
                 }
             });
     }
-        
+
 });
 
 router.get('/edit', protectRoute, (req, res) => {

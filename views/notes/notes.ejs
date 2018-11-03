@@ -21,8 +21,18 @@
             <p><%= noteList[i].details %></p>
             <p>Created on: <%= noteList[i].date.toDateString() %></p>
             <a class="pure-button pure-button-primary note-button" href="#">Edit</a>
+            <form action="/notes/edit/<%= noteList[i]._id %>?_method=DELETE" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="pure-button button-error note-button">Delete</button>
+            </form>
         </div>
         <% } %>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <!-- TODO: Link back to project -->
+            <a class="back-link" href="/projects/dashboard">Dashboard <i class="fas fa-arrow-right"></i></a>
+        </div>
     </div>
     <% include ../partials/footer %>
 </body>
