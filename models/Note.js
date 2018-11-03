@@ -14,13 +14,11 @@ let noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    /*
-    pipeline: {
+    phase: {
         type: String,
         enum: ['Not Started', 'WIP', 'Under Review', 'Completed'],
         required: true
     },
-    */
     date: {
         type: Date,
         'default': Date.now

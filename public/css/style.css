@@ -193,6 +193,11 @@
     width: 100%
 }
 
+.box-form form textarea {
+    margin-bottom: 10px;
+    width: 100%
+}
+
 .box-form a,button {
     width: 100%;
     padding: 1em;

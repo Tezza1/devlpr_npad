@@ -16,7 +16,7 @@
     <div class="pure-g">
         <div class="pure-u-1-3"></div>
         <div class="pure-u-1-3 box-form">
-            <form class="pure-form pure-form-aligned" method="post" action="/notes/add/<%= project %>">
+            <form class="pure-form pure-form-stacked" method="post" action="/notes/add/<%= project %>">
                 <fieldset>
                     <legend>Create a note</legend>
 
@@ -28,16 +28,19 @@
                         </div>
                     <% } %>
 
-                    <div class="pure-control-group">
-                        <label for="title">Title</label>
-                        <input id="title" type="text" placeholder="Title" name="title" value="<%= title %>" required>
-                    </div>
-
-                    <div class="pure-control-group">
-                        <label for="details">Details</label>
-                        <textarea id="details" placeholder="Project details" name="details" required value="<%= details %>"></textarea>
-                    </div>
-
+                    <label for="title">Title</label>
+                    <input id="title" type="text" placeholder="Title" name="title" value="<%= title %>" required>
+                    <br>
+                    <label for="details">Details</label>
+                    <textarea id="details" placeholder="Project details" name="details" required value="<%= details %>"></textarea>
+                    <br>
+                    <label for="phase">Phase</label>
+                    <select id="phase" name="phase">
+                        <option>Not Started</option>
+                        <option>WIP</option>
+                        <option>Under Review</option>
+                        <option>Completed</option>
+                    </select>
                     <a class="pure-button button-error" href="/notes/all/<%= project %>">Cancel</a>
                     <button type="submit" class="pure-button pure-button-primary form-login-button">Submit</button>
                 </fieldset>

@@ -24,7 +24,7 @@ router.get('/dashboard', protectRoute, (req, res) => {
 
 router.get('/add', protectRoute, (req, res) => {
     res.render('projects/add', {
-        pageName: 'Add a project',
+        pageName: ' - Add a project',
         errors: null,
         title: null,
         details: null
@@ -79,7 +79,7 @@ router.post('/add', protectRoute, (req, res) => {
 });
 
 router.get('/edit/:id', protectRoute, (req, res) => {
-    const pageName = 'Edit project';
+    const pageName = ' - Edit project';
     Project.findOne({
         _id: req.params.id
     })
@@ -111,7 +111,7 @@ router.delete('/edit/:id', protectRoute, (req, res) => {
     Project.deleteOne({ _id: req.params.id })
         .then(() => {
             req.flash('success_msg', 'Project deleted');
-            res.redirect('/projects/dashboard'); 
+            res.redirect('/projects/dashboard');
         });
 });
 

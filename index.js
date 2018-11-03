@@ -74,7 +74,7 @@ app.use(function(req, res, next){
 // About route
 app.get('/', (req, res) => {
     const title = 'devlpr_npad';
-    const tagline = 'The place for developers to keep their thoughts, ideas and notes on a kanban board linked to their code development';
+    const tagline = 'The place for developers to keep their thoughts, ideas and notes on a kanban style board';
     const pageName = 'Welcome';
     res.render('index', {
         title: title,
