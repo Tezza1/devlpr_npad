@@ -16,11 +16,9 @@ module.exports = (passport) => {
             if(!user) {
                 // null errors
                 // false for the user because they weren't found
-                // TODO: to output message see 31 - 2:30
-                // TODO: uncomment flass message
-                return done(null, false/*, {message: 'User not found'}*/);  
+                return done(null, false, {message: 'User not found'});
             }
-            
+
             // if a user is found, next we need to check that the password matches
             // password = unecrypted password coming from the form
             // user.password = comes from the user found in the db (and has an encrypted password)
@@ -31,14 +29,13 @@ module.exports = (passport) => {
                 }
                 else {
                     // null for error, false for user
-                    // TODO: uncomment flass message
-                    return done(null, false/*, {message: 'Password incorrect'}*/);
+                    return done(null, false, {message: 'Password incorrect'});
                 }
             });
         });
     }));
-    
-    // http://www.passportjs.org/docs/configure/    
+
+    // http://www.passportjs.org/docs/configure/
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });

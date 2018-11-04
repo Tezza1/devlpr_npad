@@ -61,6 +61,33 @@
     animation-delay: 3s;
 }
 
+.flash-error-msg {
+    font-weight: bold;
+    margin: 1em;
+    text-transform: uppercase;
+    color: rgb(202, 60, 60); /* this is a maroon */
+    text-align: center;
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 3s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 3s;
+}
+
+.flash-errors-msg {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(223, 117, 20); /* this is an orange */
+    text-align: center;
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 3s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 3s;
+}
+
 @-webkit-keyframes seconds {
   0% {
     opacity: 1;
@@ -78,18 +105,6 @@
   }
 }
 
-.flash-error-msg {
-    font-weight: bold;
-    margin: 1em;
-    text-transform: uppercase;
-    color: rgb(202, 60, 60); /* this is a maroon */
-}
-
-.flash-errors-msg {
-    font-weight: bold;
-    text-transform: uppercase;
-    color: rgb(223, 117, 20); /* this is an orange */
-}
 
 /* Additional buttons */
 .button-error {

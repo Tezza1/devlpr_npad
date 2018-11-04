@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
@@ -73,8 +72,7 @@ router.post('/register', (req, res) => {
         User.findOne({email: req.body.email})
             .then(user => {
                 if(user){
-                    // TDO: add flash messaging
-                    // req_flash('error_msg', 'Unique email required')
+                    req.flash('error_msg', 'Unique email required')
                     res.redirect('/users/register');
                 }
                 else {
@@ -92,8 +90,7 @@ router.post('/register', (req, res) => {
                                 newUser.password = hash;
                                 newUser.save()
                                     .then(user => {
-                                        // TODO: load in flash message
-                                        // req.flash('success_msg', 'Successful registration');
+                                        req.flash('success_msg', 'Successful registration');
                                         res.redirect('/users/login');
                                     })
                                     .catch(err => {
@@ -103,6 +100,10 @@ router.post('/register', (req, res) => {
                             });
                         });
                 }
+            })
+            .catch(err => {
+                req.flash('error_msg', 'Error registering')
+                res.redirect('/users/register')
             });
     }
 
@@ -132,7 +133,7 @@ router.post('/edit', protectRoute, (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
-    // req.flash('success_msg', 'Logged out')
+    req.flash('success_msg', 'Logged out')
     res.redirect('/users/login');
 });
 
