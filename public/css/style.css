@@ -231,7 +231,7 @@
 .project-box {
     margin: 1.5em;
     padding: 1.5em;
-    background-color: rgb(182, 198, 219);
+    background-color: rgb(178, 65, 244);
     border-radius: 2%;
     color: white;
     font-weight: bold;
@@ -239,7 +239,8 @@
 }
 
 .project-box h3 {
-    color: rgb(56, 98, 165);
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .project-box a {
@@ -261,19 +262,23 @@
     max-width: 25%;
     margin: 1.5em;
     padding: 1.5em;
-    background-color: rgb(244, 206, 66);
+    background-color: rgb(223, 117, 20);
     border-radius: 2%;
     color: white;
     font-weight: bold;
     line-height: 1.5em;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-
 }
 
 .note-box h3 {
-   color: rgb(56, 98, 165);
+   text-transform: uppercase;
    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
    font-size: 150%;
+   text-align: center;
+}
+
+.sub-category {
+    text-decoration: underline;
 }
 
 .note-button {

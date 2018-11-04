@@ -6,8 +6,17 @@ const mongoose = require('mongoose');
 require('../models/Note');
 const Note = mongoose.model('notes');
 
+// Load Mongoose Model
+require('../models/Project');
+const Project = mongoose.model('projects');
+
 router.get('/all/:id', (req, res) => {
     let pageName = " - Project notes";
+    let projectName = "";
+    Project.findOne({_id: req.params.id })
+        .then(project => {
+            projectName = project.title;
+        });
     Note.find({project: req.params.id})
         .sort({ date: 'desc' })
         .then(note => {
@@ -15,6 +24,7 @@ router.get('/all/:id', (req, res) => {
                 pageName: pageName,
                 functionBarRoute: `/notes/add/${req.params.id}`,
                 functionBarLabel: 'Note',
+                projectName: projectName,
                 noteList: note
             })
         });
@@ -44,6 +54,36 @@ router.post('/add/:id', (req,res) => {
                 res.redirect(`/notes/all/${req.params.id}`);
             });
 });
+
+router.get('/edit/:id', (req, res) => {
+    const pageName = ' - Edit project';
+    Note.findOne({
+        _id: req.params.id
+    })
+        .then(note => {
+            res.render('notes/edit', {
+                pageName: pageName,
+                errors: null,
+                note: note
+            });
+        });
+});
+
+router.put('/edit/:id', (req, res) => {
+    Note.findOne({ _id: req.params.id })
+        .then(note => {
+           note.title = req.body.title;
+           note.details = req.body.details;
+
+           note.save()
+            .then(note => {
+                req.flash('success_msg', 'Note updated');
+                res.redirect(`/notes/all/${note.project}`);
+            });
+
+        });
+});
+
 
 router.delete('/edit/:id', (req, res) => {
     Note.deleteOne({ _id: req.params.id })
