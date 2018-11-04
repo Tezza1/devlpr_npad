@@ -110,7 +110,7 @@ router.post('/register', (req, res) => {
 
 router.get('/edit', protectRoute, (req, res) => {
     res.send('User edit');
-
+    // req.user.id
     // TODO: put into edit & delete
     // TODO: uncomment at home
     /*

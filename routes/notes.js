@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const {protectRoute} = require('../helpers/auth');
 
 // Load Mongoose Model
 require('../models/Note');
@@ -10,7 +11,7 @@ const Note = mongoose.model('notes');
 require('../models/Project');
 const Project = mongoose.model('projects');
 
-router.get('/all/:id', (req, res) => {
+router.get('/all/:id', protectRoute, (req, res) => {
     let pageName = " - Project notes";
     let projectName = "";
     Project.findOne({_id: req.params.id })
@@ -30,7 +31,7 @@ router.get('/all/:id', (req, res) => {
         });
 });
 
-router.get('/add/:id', (req, res) => {
+router.get('/add/:id', protectRoute, (req, res) => {
     res.render('notes/add', {
         pageName: ' - Add a Note',
         errors: null,
@@ -40,7 +41,7 @@ router.get('/add/:id', (req, res) => {
     });
 });
 
-router.post('/add/:id', (req,res) => {
+router.post('/add/:id', protectRoute, (req,res) => {
     const newNote = {
             title: req.body.title,
             details: req.body.details,
@@ -55,7 +56,7 @@ router.post('/add/:id', (req,res) => {
             });
 });
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', protectRoute, (req, res) => {
     const pageName = ' - Edit project';
     Note.findOne({
         _id: req.params.id
@@ -69,7 +70,7 @@ router.get('/edit/:id', (req, res) => {
         });
 });
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', protectRoute, (req, res) => {
     Note.findOne({ _id: req.params.id })
         .then(note => {
            note.title = req.body.title;
@@ -85,7 +86,7 @@ router.put('/edit/:id', (req, res) => {
 });
 
 
-router.delete('/edit/:id', (req, res) => {
+router.delete('/edit/:id', protectRoute, (req, res) => {
     Note.deleteOne({ _id: req.params.id })
         .then(() => {
             req.flash('success_msg', 'Note deleted');
