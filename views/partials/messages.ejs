@@ -1,12 +1,18 @@
 <!-- views/partials/messages.ejs -->
 <% if (typeof success_msg != 'undefined') { %>
     <div class="flash-success-msg">
-        <p><%= success_msg %></p>
+        <h3><%= success_msg %></h3>
     </div>
 <% } %>
 
 <% if (typeof error_msg != 'undefined') { %>
     <div class="flash-error-msg">
-        <p><%= error_msg %></p>
+        <h3><%= error_msg %></h3>
+    </div>
+<% } %>
+
+<% if (typeof error != 'undefined') { %>
+    <div class="flash-error-msg">
+        <h3><%= error %></h3>
     </div>
 <% } %>

@@ -1,17 +1,17 @@
 <!-- views/partials/function_bar.ejs -->
 <div class="pure-g function-bar">
-    <div class="pure-u-md-1-3 pure-u-sm-1-1">
+    <div class="pure-u-md-1-3 pure-u-1">
     </div>
-    <div class="pure-u-md-1-3 pure-u-sm-1-1">
+    <div class="pure-u-md-1-3 pure-u-1">
     </div>
-    <div class="pure-u-md-1-3 pure-u-sm-1-1">
+    <div class="pure-u-md-1-3 pure-u-1">
         <a href="/users/logout">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
         </a>
-        <a href="/users/edit">
+        <a>
             <i class="fas fa-user-circle"></i>
-            <span>User</span>
+            <span><%= userName %></span>
         </a>
         <a href="<%= functionBarRoute %>">
             <i class="fas fa-plus-circle"></i>

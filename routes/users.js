@@ -36,6 +36,8 @@ router.get('/register', (req, res) => {
         errors: null,
         name: null,
         email: null,
+        password: null,
+        password2: null,
         display: 'none'
     })
 });
@@ -64,7 +66,9 @@ router.post('/register', (req, res) => {
             display: 'inherit',
             errors: errors,
             name: req.body.name,
-            email: req.body.email
+            email: req.body.email,
+            password: req.body.password,
+            password2: req.body.password2
         })
     }
     else {
@@ -72,7 +76,7 @@ router.post('/register', (req, res) => {
         User.findOne({email: req.body.email})
             .then(user => {
                 if(user){
-                    req.flash('error_msg', 'Unique email required')
+                    req.flash('error_msg', 'Unique email required');
                     res.redirect('/users/register');
                 }
                 else {
@@ -107,28 +111,6 @@ router.post('/register', (req, res) => {
             });
     }
 
-});
-
-router.get('/edit', protectRoute, (req, res) => {
-    res.send('User edit');
-    // req.user.id
-    // TODO: put into edit & delete
-    // TODO: uncomment at home
-    /*
-    User.findOne({
-        userName: 'John Doe'
-    })
-    .then(user => {
-        // new values
-        user.userName = "Jane Doe";
-        user.save()
-    });
-    */
-
-});
-
-router.post('/edit', protectRoute, (req, res) => {
-    res.send('Users edit')
 });
 
 router.get('/logout', (req, res) => {

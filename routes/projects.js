@@ -15,6 +15,7 @@ router.get('/dashboard', protectRoute, (req, res) => {
         .then(project => {
             res.render('projects/dashboard', {
                 pageName: pageName,
+                userName: req.user.name,
                 functionBarRoute: '/projects/add',
                 functionBarLabel: 'Project',
                 projectList: project

@@ -23,6 +23,7 @@ router.get('/all/:id', protectRoute, (req, res) => {
         .then(note => {
             res.render('notes/notes', {
                 pageName: pageName,
+                userName: req.user.name,
                 functionBarRoute: `/notes/add/${req.params.id}`,
                 functionBarLabel: 'Note',
                 projectName: projectName,

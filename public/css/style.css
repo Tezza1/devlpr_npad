@@ -14,11 +14,19 @@
     position: relative;
 }
 
+.faded-background {
+    background-image: url("/img/web-developer-washed.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
 /* ----- PAGE COMPONENTS ----- */
 .company-header {
     font-family: 'Mali', cursive;
-    font-size: 2.5em;
-    margin-left: 1em;
+    text-align: center;
     color: rgb(56, 98, 165)
 }
 
@@ -63,7 +71,6 @@
 
 .flash-error-msg {
     font-weight: bold;
-    margin: 1em;
     text-transform: uppercase;
     color: rgb(202, 60, 60); /* this is a maroon */
     text-align: center;
@@ -161,16 +168,13 @@
 }
 
 .landing-box {
-    background-color: white;
     border: 4px solid rgb(56, 98, 165);
     border-radius: 2%;
     padding: 1em;
-    letter-spacing: 1.1;
-    text-align: center;
 }
 
 .landing-box h1 {
-    color: rgb(66, 184, 221);
+    color: rgb(56, 98, 165);
 }
 
 .company-name {
@@ -193,6 +197,8 @@
 /* Login page */
 .box-form {
     border: 4px solid rgb(56, 98, 165);
+    background-color: white;
+    opacity: 0.9;
     border-radius: 2%;
     padding: 1.5em;
     margin-top: 1em;
@@ -247,7 +253,7 @@
 .project-box {
     margin: 1.5em;
     padding: 1.5em;
-    background-color: rgb(178, 65, 244);
+    background-color: rgba(45, 51, 61, 0.7);
     border-radius: 2%;
     color: white;
     font-weight: bold;
@@ -274,13 +280,16 @@
 }
 
 /* Note page */
+.sub-title {
+    text-align: center;
+}
+
 .note-box {
-    max-width: 25%;
     margin: 1.5em;
     padding: 1.5em;
-    background-color: rgb(223, 117, 20);
+    background-color: rgb(255,255,204); /* rgb(255,255,153) */
     border-radius: 2%;
-    color: white;
+    color: black;
     font-weight: bold;
     line-height: 1.5em;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -289,8 +298,11 @@
 .note-box h3 {
    text-transform: uppercase;
    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-   font-size: 150%;
    text-align: center;
+}
+
+.note-description {
+    font-style: italic;
 }
 
 .sub-category {
@@ -315,4 +327,16 @@
 
 .fa-arrow-right {
     margin-top: 1em;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 46em){
+    .box-form {
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
+    
+    .pageName {
+        display: block;
+    }
 }

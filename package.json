@@ -4,7 +4,7 @@
   "description": "The Node capstone for the Thinkful Full Stack Bootcamp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -39,5 +39,8 @@
     "mongoose": "^5.3.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
