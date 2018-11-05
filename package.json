@@ -4,6 +4,7 @@
   "description": "The Node capstone for the Thinkful Full Stack Bootcamp",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha --exit"
   },
   "repository": {

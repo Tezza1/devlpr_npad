@@ -34,8 +34,8 @@ app.use(methodOverride('_method'));
 
 // Connect to database --> because running old 32 bit version
 mongoose.Promise = global.Promise;
-const dbURI = 'mongodb://localhost/devlpr-npad';
-mongoose.connect(dbURI,  {useNewUrlParser: true})
+const db = require('./config/database');
+mongoose.connect(db.mongoURI,  {useNewUrlParser: true})
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
