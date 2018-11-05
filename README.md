@@ -3,6 +3,7 @@
 
 #### Live version
 [Live version hosted on Heroku](https://gist.github.com/Tezza1/d8909d7c5976c5dbf07f357d8ac4130a)
+(_Register and login to trial_)
 
 #### Overview
 The app is for developers to have a place to record their ideas and plans as they are working through a project. It can also act as a repository of thoughts and ideas from past projects.  
